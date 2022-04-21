@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <Windows.h>
 
 #define GLO_IMPLEMENTATION
 #include "./glo.h"
@@ -38,7 +39,7 @@ void* slurp_file(const char *fn, size_t *size) {
 
 void do_test(int argc, char *argv[]) {
 	if(argc != 2) {
-		printf("USAGE: heck test <in>\n");
+		printf("USAGE: gloverModTools test <in>\n");
 		printf("  in: path to a GLO file.\n");
 		return;
 	}
@@ -100,7 +101,7 @@ void texswap_mesh(GLO_MESH *mesh, char *from, char *to) {
 
 void do_texswap(int argc, char *argv[]) {
 	if(argc != 4 && argc != 5) {
-		printf("USAGE: heck texswap <from> <to> <in> [out]\n");
+		printf("USAGE: gloverModTools texswap <from> <to> <in> [out]\n");
 		printf("  from: Texture name to replace\n");
 		printf("  to:   New texture name\n");
 		printf("  in:   Input GLO file\n");
@@ -162,7 +163,7 @@ void texwrap_mesh(GLO_MESH *mesh) {
 
 void do_texwrap(int argc, char *argv[]) {
 	if(argc != 2) {
-		printf("USAGE: heck texwrap <in>\n");
+		printf("USAGE: gloverModTools texwrap <in>\n");
 		printf("  in: path to a GLO file\n");
 		return;
 	}
@@ -187,7 +188,7 @@ void do_texwrap(int argc, char *argv[]) {
 
 void do_meshdel(int argc, char *argv[]) {
 	if(argc != 3 && argc != 4) {
-		printf("USAGE: heck meshdel <meshname> <in> [out]\n");
+		printf("USAGE: gloverModTools meshdel <meshname> <in> [out]\n");
 		return;
 	}
 	GLO_FILE *glo = glo_load(argv[2]);
@@ -218,7 +219,7 @@ void do_meshdel(int argc, char *argv[]) {
 
 void do_glo2txt(int argc, char *argv[]) {
 	if(argc != 3) {
-		printf("USAGE: heck glo2txt <in> <out>\n");
+		printf("USAGE: gloverModTools glo2txt <in> <out>\n");
 		return;
 	}
 	GLO_FILE *glo = glo_load(argv[1]);
@@ -235,7 +236,7 @@ void do_glo2txt(int argc, char *argv[]) {
 
 void do_txt2glo(int argc, char *argv[]) {
 	if(argc != 3) {
-		printf("USAGE: heck glo2txt <in> <out>\n");
+		printf("USAGE: gloverModTools glo2txt <in> <out>\n");
 		return;
 	}
 	GLO_FILE *glo = glo_load_txt(argv[1]);
@@ -250,24 +251,27 @@ void do_txt2glo(int argc, char *argv[]) {
 
 int main(int argc, char *argv[]) {
 	if(argc == 1) {
-		printf("USAGE: heck <action> <stuff>\n");
-		printf("Enter just the action to see the stuff. Actions include:\n");
-		printf("  test:    verify load+save results in an exact match\n");
-		printf("  texswap: rename textures\n");
-		printf("  texwrap: list all textures with >1 UV\n");
-		printf("  meshdel: delete meshes matching a name\n");
-		printf("  glo2txt: convert glo to text format\n");
+		printf("USAGE: gloverModTools <action> <stuff>\n");
+		printf("View readme for more info\nEnter just the action to see the stuff. Actions include:\n");
+		//printf("  test:    verify load+save results in an exact match\n");
+		//printf("  texswap: rename textures\n");
+		//printf("  texwrap: list all textures with >1 UV\n");
+		//printf("  meshdel: delete meshes matching a name\n");
+		printf("  glo2txt: convert glo object models to text format\n");
 		printf("  txt2glo: convert text file back into binary glo\n");
+		printf("Press enter to exit...\n");
+		getchar();
 		return 0;
 	}
 
-	if(strcmp(argv[1], "test") == 0) do_test(argc-1, argv+1);
-	if(strcmp(argv[1], "texswap") == 0) do_texswap(argc-1, argv+1);
-	if(strcmp(argv[1], "texwrap") == 0) do_texwrap(argc-1, argv+1);
-	if(strcmp(argv[1], "meshdel") == 0) do_meshdel(argc-1, argv+1);
+	//if(strcmp(argv[1], "test") == 0) do_test(argc-1, argv+1);
+	//if(strcmp(argv[1], "texswap") == 0) do_texswap(argc-1, argv+1);
+	//if(strcmp(argv[1], "texwrap") == 0) do_texwrap(argc-1, argv+1);
+	//if(strcmp(argv[1], "meshdel") == 0) do_meshdel(argc-1, argv+1);
 	if(strcmp(argv[1], "glo2txt") == 0) do_glo2txt(argc-1, argv+1);
 	if(strcmp(argv[1], "txt2glo") == 0) do_txt2glo(argc-1, argv+1);
 
-	scanf("press any key to end");
+	printf("\ndone! Press Enter to exit...");
+	getchar(); 
 	return 0;
 }
