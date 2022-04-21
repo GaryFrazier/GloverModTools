@@ -36,3 +36,6 @@ To convert a txt file to a .glo object is similar to the above:
 Essentially the same but you are using the existing txt file as FILE_NAME and it will create a .glo file as what you put for OUTPUT_FILE_NAME
 
 Now you can replace the .glo file in the game directory with your new one, or create a mod package and use the mod manager (see above).
+
+## Troubleshooting
+Try running as administrator
